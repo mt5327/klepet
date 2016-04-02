@@ -37,7 +37,7 @@ Klepet.prototype.procesirajUkaz = function(ukaz) {
       var besedilo = besede.join(' ');
       var parametri = besedilo.split('\"');
       if (parametri) {
-        this.socket.emit('sporocilo', { vzdevek: parametri[1], besedilo: parametri[3] });
+        this.socket.emit('sporocilo', { vzdevek: parametri[1], besedilo: parametri[3] + '\"' });
         sporocilo = '(zasebno za ' + parametri[1] + '): ' + parametri[3];
       } else {
         sporocilo = 'Neznan ukaz';
