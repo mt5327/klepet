@@ -1,10 +1,12 @@
 function divElementEnostavniTekst(sporocilo) {
   var jeSmesko = sporocilo.indexOf('http://sandbox.lavbic.net/teaching/OIS/gradivo/') > -1;
-  if (jeSmesko) {
-    sporocilo = sporocilo.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace('&lt;img', '<img').replace('png\' /&gt;', 'png\' />');
+  var jeYouTube = new RegExp(/https:\/\/www.youtube.com\/embed\/\S{11}?/);
+  if (jeSmesko || jeYouTube.test(sporocilo)) {
+    sporocilo = sporocilo.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/&lt;img/g, '<img').replace(/\/&gt;/g, '/>')
+    .replace(/&lt;iframe/g, '<iframe').replace(/&gt;&lt;\/iframe&gt;/g, '></iframe>');
     return $('<div style="font-weight: bold"></div>').html(sporocilo);
   } else {
-    return $('<div style="font-weight: bold;"></div>').html(sporocilo);
+    return $('<div style="font-weight: bold;"></div>').text(sporocilo);
   }
 }
 
