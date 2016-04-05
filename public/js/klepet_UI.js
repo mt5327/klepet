@@ -137,10 +137,14 @@ function dodajSmeske(vhodnoBesedilo) {
 function dodajSlike(vhodnoBesedilo) {
   var split = vhodnoBesedilo.split(" ");
   var linki = [];
-  for (var i = 0; i < split.length; i++)
-    if ((split[i].startsWith('http://') || split[i].startsWith('https://')) && (split[i].endsWith('.jpg') || split[i].endsWith('.png') || split[i].endsWith('.gif')))
-      if (niSeVTabeli(split[i], linki) && split[i].indexOf('http://sandbox.lavbic.net/teaching/OIS/gradivo/') == -1)
-        linki.push(split[i]);
+  var matches = [];
+  for (var i = 0; i < split.length; i++) {
+    matches = split[i].match(/https?:\/\/.*?\.(jpg|png|gif)/gi); 
+    if (matches != null)
+      for (var j = 0; j < matches.length; j++)
+        if (niSeVTabeli(matches[j], linki) && matches[j].indexOf('http://sandbox.lavbic.net/teaching/OIS/gradivo/') == -1)
+          linki.push(matches[j]); 
+  }
   for (var i = 0; i < linki.length; i++) {
     var link = new RegExp(linki[i], 'g');
     vhodnoBesedilo = vhodnoBesedilo.replace(link, '<img src='+linki[i]+' class=slika />');
