@@ -3,7 +3,7 @@ function divElementEnostavniTekst(sporocilo) {
   var jeYouTube = new RegExp(/https:\/\/www\.youtube\.com\/embed\/\S{11}?/);
   if (jeSmesko || jeYouTube.test(sporocilo)) {
     sporocilo = sporocilo.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/&lt;img/g, '<img').replace(/\/&gt;/g, '/>')
-    .replace(/&lt;iframe/g, '<iframe').replace(/&gt;&lt;\/iframe&gt;/g, '></iframe>');
+    .replace(/&lt;br&gt;&lt;iframe/g, '<br><iframe').replace(/&gt;&lt;\/iframe&gt;/g, '></iframe>');
     return $('<div style="font-weight: bold"></div>').html(sporocilo);
   } else {
     return $('<div style="font-weight: bold;"></div>').text(sporocilo);
@@ -145,7 +145,7 @@ function dodajVidee(vhodnoBesedilo) {
   }
   for (var i = 0; i < linki.length; i++) {
     var link = linki[i].toString();
-    vhodnoBesedilo = vhodnoBesedilo.replace(link, '<iframe src=https://www.youtube.com/embed/'+link.substring(32, 43)+' allowfullscreen></iframe>');
+    vhodnoBesedilo = vhodnoBesedilo.replace(link, '<br><iframe src=https://www.youtube.com/embed/'+link.substring(32, 43)+' allowfullscreen></iframe>');
   }
   return vhodnoBesedilo;
 }
