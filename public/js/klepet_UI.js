@@ -142,19 +142,12 @@ function dodajSlike(vhodnoBesedilo) {
     matches = split[i].match(/https?:\/\/.*?\.(jpg|png|gif)/gi); 
     if (matches != null)
       for (var j = 0; j < matches.length; j++)
-        if (niSeVTabeli(matches[j], linki) && matches[j].indexOf('http://sandbox.lavbic.net/teaching/OIS/gradivo/') == -1)
+        if (matches[j].indexOf('http://sandbox.lavbic.net/teaching/OIS/gradivo/') == -1)
           linki.push(matches[j]); 
   }
   for (var i = 0; i < linki.length; i++) {
-    var link = new RegExp(linki[i], 'g');
-    vhodnoBesedilo = vhodnoBesedilo.replace(link, '<br><img src='+linki[i]+' class=slika />');
+    vhodnoBesedilo = vhodnoBesedilo.replace(linki[i], "");
+    vhodnoBesedilo += '<br><img src='+linki[i]+' class=slika />';
   }
   return vhodnoBesedilo;
-}
-
-function niSeVTabeli(link, linki) {
-  for (var i = 0; i < linki.length; i++)
-    if (link === linki[i])
-      return false;
-  return true;
 }
