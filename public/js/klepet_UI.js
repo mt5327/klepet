@@ -87,7 +87,7 @@ $(document).ready(function() {
         $('#seznam-kanalov').append(divElementEnostavniTekst(kanal));
       }
     }
-
+    
     $('#seznam-kanalov div').click(function() {
       klepetApp.procesirajUkaz('/pridruzitev ' + $(this).text());
       $('#poslji-sporocilo').focus();
