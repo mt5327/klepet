@@ -145,9 +145,7 @@ function dodajSlike(vhodnoBesedilo) {
         if (matches[j].indexOf('http://sandbox.lavbic.net/teaching/OIS/gradivo/') == -1)
           linki.push(matches[j]); 
   }
-  for (var i = 0; i < linki.length; i++) {
-    vhodnoBesedilo = vhodnoBesedilo.replace(linki[i], "");
+  for (var i = 0; i < linki.length; i++) 
     vhodnoBesedilo += '<br><img src='+linki[i]+' class=slika />';
-  }
   return vhodnoBesedilo;
 }
