@@ -141,11 +141,13 @@ function dodajVidee(vhodnoBesedilo) {
   for (var i = 0; i < split.length; i++) {
     var matches = split[i].match(/https:\/\/www\.youtube\.com\/watch\?v=(\S{11})?/gi);
     if (matches != null)
-      linki.push(matches);
+      for (var j = 0; j < matches.length; j++)
+        linki.push(matches[j]);
   }
   for (var i = 0; i < linki.length; i++) {
     var link = linki[i].toString();
-    vhodnoBesedilo = vhodnoBesedilo.replace(link, '<br><iframe src=https://www.youtube.com/embed/'+link.substring(32, 43)+' allowfullscreen></iframe>');
+    vhodnoBesedilo = vhodnoBesedilo.replace(linki[i], "");
+    vhodnoBesedilo += '<br><iframe src=https://www.youtube.com/embed/'+link.substring(32, 43)+' allowfullscreen></iframe>';
   }
   return vhodnoBesedilo;
 }
