@@ -73,12 +73,17 @@ $(document).ready(function() {
     $('#sporocila').append(divElementHtmlTekst('Sprememba kanala.'));
   });
   
-  socket.on('dregljaj', function(uporabniki) {
+  socket.on('dregljaj', function(dregljaj) {
     $('#vsebina').jrumble();
     $('#vsebina').trigger('startRumble');
     setTimeout(function() { 
       $('#vsebina').trigger('stopRumble'); 
     }, 1500);
+  });
+
+  socket.on('obvestilo', function (sporocilo) {
+    var novElement = divElementHtmlTekst(sporocilo.besedilo);
+    $('#sporocila').append(novElement);
   });
 
   socket.on('sporocilo', function (sporocilo) {
