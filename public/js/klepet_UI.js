@@ -146,7 +146,6 @@ function dodajVidee(vhodnoBesedilo) {
   }
   for (var i = 0; i < linki.length; i++) {
     var link = linki[i].toString();
-    vhodnoBesedilo = vhodnoBesedilo.replace(linki[i], "");
     vhodnoBesedilo += '<br><iframe src=https://www.youtube.com/embed/'+link.substring(32, 43)+' allowfullscreen></iframe>';
   }
   return vhodnoBesedilo;
