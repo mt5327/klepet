@@ -9,6 +9,11 @@ a {
 
 .slika { 
   width: 200px;
+}
+
+iframe {
+  width: 200px;
+  height: 150px;
   margin-left: 20px;
 }
 
