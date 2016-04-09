@@ -183,7 +183,6 @@ function dodajSlike(vhodnoBesedilo) {
     for (var i = 0; i < linki.length; i++)
       vhodnoBesedilo += '<br><img src='+linki[i]+' class=slika />';
   }
-<<<<<<< HEAD
   return vhodnoBesedilo;
 }
 
@@ -204,20 +203,19 @@ function dodajVidee(vhodnoBesedilo) {
       for (var j = 0; j < matches.length; j++)
         linki.push(matches[j]);
   }
+  var link;
   if (jeZasebno) {
     for (var i = 0; i < linki.length; i++) {
-      var link = linki[i].toString();
+      link = linki[i].toString();
       split[3] += '<br><iframe src=https://www.youtube.com/embed/'+link.substring(32, 43)+' allowfullscreen></iframe>';
     }
     vhodnoBesedilo = split.join('"');
   }
   else {
     for (var i = 0; i < linki.length; i++) {
-      var link = linki[i].toString();
+      link = linki[i].toString();
       vhodnoBesedilo += '<br><iframe src=https://www.youtube.com/embed/'+link.substring(32, 43)+' allowfullscreen></iframe>';
     }
   }
-=======
->>>>>>> slike
   return vhodnoBesedilo;
 }
