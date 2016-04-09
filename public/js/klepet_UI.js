@@ -135,9 +135,17 @@ function dodajSmeske(vhodnoBesedilo) {
 }
 
 function dodajSlike(vhodnoBesedilo) {
-  var split = vhodnoBesedilo.split(" ");
   var linki = [];
   var matches = [];
+  var jeZasebno = false;
+  var split;
+  if (vhodnoBesedilo.indexOf("/zasebno") > -1) {
+    split = vhodnoBesedilo.split('\"');
+    jeZasebno = true;
+  }
+  else {
+    split = vhodnoBesedilo.split(" ");
+  }
   for (var i = 0; i < split.length; i++) {
     matches = split[i].match(/https?:\/\/.*?\.(jpg|png|gif)/gi); 
     if (matches != null)
@@ -145,7 +153,14 @@ function dodajSlike(vhodnoBesedilo) {
         if (matches[j].indexOf('http://sandbox.lavbic.net/teaching/OIS/gradivo/') == -1)
           linki.push(matches[j]); 
   }
-  for (var i = 0; i < linki.length; i++) 
-    vhodnoBesedilo += '<br><img src='+linki[i]+' class=slika />';
+  if (jeZasebno) {
+    for (var i = 0; i < linki.length; i++)
+      split[3] += '<br><img src='+linki[i]+' class=slika />';
+    vhodnoBesedilo = split.join('"');
+  }
+  else {
+    for (var i = 0; i < linki.length; i++)
+      vhodnoBesedilo += '<br><img src='+linki[i]+' class=slika />';
+  }
   return vhodnoBesedilo;
 }
