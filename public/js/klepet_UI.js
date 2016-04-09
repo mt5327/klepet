@@ -183,6 +183,7 @@ function dodajSlike(vhodnoBesedilo) {
     for (var i = 0; i < linki.length; i++)
       vhodnoBesedilo += '<br><img src='+linki[i]+' class=slika />';
   }
+<<<<<<< HEAD
   return vhodnoBesedilo;
 }
 
@@ -216,5 +217,7 @@ function dodajVidee(vhodnoBesedilo) {
       vhodnoBesedilo += '<br><iframe src=https://www.youtube.com/embed/'+link.substring(32, 43)+' allowfullscreen></iframe>';
     }
   }
+=======
+>>>>>>> slike
   return vhodnoBesedilo;
 }
