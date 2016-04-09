@@ -136,17 +136,35 @@ function dodajSmeske(vhodnoBesedilo) {
 }
 
 function dodajVidee(vhodnoBesedilo) {
-  var split = vhodnoBesedilo.split(" ");
   var linki = [];
+  var jeZasebno = false;
+  var split;
+  if (vhodnoBesedilo.indexOf("/zasebno") > -1) {
+    split = vhodnoBesedilo.split('\"');
+    jeZasebno = true;
+  }
+  else {
+    split = vhodnoBesedilo.split(" ");
+  }
   for (var i = 0; i < split.length; i++) {
     var matches = split[i].match(/https:\/\/www\.youtube\.com\/watch\?v=(\S{11})?/gi);
     if (matches != null)
       for (var j = 0; j < matches.length; j++)
         linki.push(matches[j]);
   }
-  for (var i = 0; i < linki.length; i++) {
-    var link = linki[i].toString();
-    vhodnoBesedilo += '<br><iframe src=https://www.youtube.com/embed/'+link.substring(32, 43)+' allowfullscreen></iframe>';
+  var link;
+  if (jeZasebno) {
+    for (var i = 0; i < linki.length; i++) {
+      link = linki[i].toString();
+      split[3] += '<br><iframe src=https://www.youtube.com/embed/'+link.substring(32, 43)+' allowfullscreen></iframe>';
+    }
+    vhodnoBesedilo = split.join('"');
+  }
+  else {
+    for (var i = 0; i < linki.length; i++) {
+      link = linki[i].toString();
+      vhodnoBesedilo += '<br><iframe src=https://www.youtube.com/embed/'+link.substring(32, 43)+' allowfullscreen></iframe>';
+    }
   }
   return vhodnoBesedilo;
 }
